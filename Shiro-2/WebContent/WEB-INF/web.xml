@@ -27,7 +27,10 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	<!-- 1.配置Shiro的shiroFilter -->
+	<!-- 1.配置Shiro的shiroFilter 
+		 2.DelegatingFilterProxy实际上是Filter的一个代理对象。默认情况下，Spring会到IOC容器中查找和<filter-name>
+		  对应的filter bean.也可以通过targetBeanName的初始化参数来配置 filter bean的id
+	-->
 	<filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

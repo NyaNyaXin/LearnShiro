@@ -78,6 +78,7 @@
     <!-- 
     	6.配置ShiroFilter
     	6.1 id必须和web.xml文件中配置的DelegatingFilterProxy的filter-name一致。
+    		若不一致则会抛出NoSuchBeanDefinitionException。因为Shiro会来IOC容器中查找和<filter-name>名字对应的FilterBean
     	6.2
      -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
