@@ -70,13 +70,19 @@
 		<property name="loginUrl" value="/login.jsp" />
 		<property name="successUrl" value="/list.jsp" />
 		<property name="unauthorizedUrl" value="/unauthorized.jsp" />
-		<!-- 配置哪些页面需要被保护 以及访问这些页面需要的权限 1).anon可以被匿名访问 2).authc必须认证(即登陆)或才可以访问的页面 -->
+		<!-- 配置哪些页面需要被保护 以及访问这些页面需要的权限 
+				1).anon可以被匿名访问 
+				2).authc必须认证(即登陆)或才可以访问的页面 
+				3).logout登出
+		-->
 		<property name="filterChainDefinitions">
 			<value>
 				/login.jsp = anon
 				/shiro/login = anon
+				/shiro/logout = logout
 				# everything else requires authentication:
-				/**= authc
+				
+				/** = authc
 				
 			</value>
 		</property>
