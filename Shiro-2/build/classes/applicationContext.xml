@@ -97,7 +97,7 @@
                 /login.jsp = anon
                 
                 # everything else requires authentication:
-                /** = authc
+                /user.jsp= authc
             </value>
         </property>
     </bean>
