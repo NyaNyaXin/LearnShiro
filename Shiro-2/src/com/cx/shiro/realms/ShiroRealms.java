@@ -3,26 +3,14 @@ package com.cx.shiro.realms;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.realm.Realm;
+import org.apache.shiro.realm.AuthenticatingRealm;
 
-public class ShiroRealms implements Realm {
+public class ShiroRealms extends AuthenticatingRealm {
 
 	@Override
-	public AuthenticationInfo getAuthenticationInfo(AuthenticationToken arg0) throws AuthenticationException {
-		// TODO Auto-generated method stub
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+		System.out.println("doGetAuthenticationInfo:"+token.hashCode());
 		return null;
-	}
-
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean supports(AuthenticationToken arg0) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }
