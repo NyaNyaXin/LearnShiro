@@ -7,7 +7,10 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthenticatingRealm;
+
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 public class ShiroRealms extends AuthenticatingRealm {
 
@@ -32,11 +35,20 @@ public class ShiroRealms extends AuthenticatingRealm {
 		//1)principal:认证的实体信息。可以使username，也可以是数据表对应的实体类对象
 		Object principal = username;
 		//2)credentials:从数据库中获取的密码
-		Object credentials = "123456";
+		Object credentials = "fc1709d0a95a6be30bc5926fdb7f22f4";
 		//3)realmName:当前realm对应的name。调用父类的getName()方法即可
 		String realmName = getName();
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, realmName);
 		return info;
+	}
+	
+	public static void main(String[] args) {
+		String algorithmName = "MD5";
+		Object source = "123456";
+		Object salt = null;
+		int hashIterations = 1024;
+		Object result =  new  SimpleHash(algorithmName, source, salt, hashIterations);
+		System.out.println(result);
 	}
 
 }
