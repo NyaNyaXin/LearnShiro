@@ -18,6 +18,10 @@
 		<br><br>
 		<a href="user.jsp">User Page</a>
 	</shiro:hasRole>
+	
+	<br><br>
+	<a href="shiro/testShiroAnnotation">TestShiroAnnotation</a>
+	
 	<br><br>
 	<a href="shiro/logout">Logout</a>
 	

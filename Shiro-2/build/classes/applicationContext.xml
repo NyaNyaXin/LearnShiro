@@ -99,5 +99,7 @@
 			</value>
 		</property>
 	</bean>
+	
+	<bean id="shiroService" class="com.cx.shiro.services.ShiroService"></bean>
 
 </beans>
