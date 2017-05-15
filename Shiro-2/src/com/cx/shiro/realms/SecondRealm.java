@@ -42,16 +42,16 @@ public class SecondRealm extends AuthenticatingRealm {
 		//2)credentials:从数据库中获取的密码
 		Object hashedCredentials = null;
 		if("admin".equals(username)) {
-			hashedCredentials = "ce2f6417c7e1d32c1d81a797ee0b499f87c5de06";
+			hashedCredentials = "ce2f6417c7e1d32c1d81a797ee0b499f87c5de06---";
 		}else if("user".equals(username)) {
-			hashedCredentials= "073d4c3ae812935f23cb3f2a71943f49e082a718";
+			hashedCredentials= "073d4c3ae812935f23cb3f2a71943f49e082a718---";
 		}
 		//3)realmName:当前realm对应的name。调用父类的getName()方法即可
 		String realmName = getName();
 		//4)盐值
 		ByteSource credentialsSalt = ByteSource.Util.bytes(username);
 		SimpleAuthenticationInfo info = null;
-		info = new SimpleAuthenticationInfo(principal, hashedCredentials, credentialsSalt, realmName);
+		info = new SimpleAuthenticationInfo("secondRealmName", hashedCredentials, credentialsSalt, realmName);
 		return info;
 	}
 	
