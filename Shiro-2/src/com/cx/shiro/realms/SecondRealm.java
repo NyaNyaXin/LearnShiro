@@ -13,12 +13,14 @@ import org.apache.shiro.util.ByteSource;
 
 import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
-public class ShiroRealms extends AuthenticatingRealm {
+public class SecondRealm extends AuthenticatingRealm {
 
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		
-		System.out.println("[ShiroRealms]...doGetAuthenticationInfo...");
+		System.out.println("[SecondRealm]..doGetAuthenticationInfo..");
+		
+		
 		//1.把AuthenticationToken转换为UsernamePasswordToken
 		UsernamePasswordToken uptoken = (UsernamePasswordToken) token;
 		//2.从UsernamePasswordToken中来获取username
@@ -40,9 +42,9 @@ public class ShiroRealms extends AuthenticatingRealm {
 		//2)credentials:从数据库中获取的密码
 		Object hashedCredentials = null;
 		if("admin".equals(username)) {
-			hashedCredentials = "038bdaf98f2037b31f1e75b5b4c9b26e";
+			hashedCredentials = "ce2f6417c7e1d32c1d81a797ee0b499f87c5de06";
 		}else if("user".equals(username)) {
-			hashedCredentials= "098d2c478e9c11555ce2823231e02ec1";
+			hashedCredentials= "073d4c3ae812935f23cb3f2a71943f49e082a718";
 		}
 		//3)realmName:当前realm对应的name。调用父类的getName()方法即可
 		String realmName = getName();
@@ -54,9 +56,9 @@ public class ShiroRealms extends AuthenticatingRealm {
 	}
 	
 	public static void main(String[] args) {
-		String algorithmName = "MD5";
+		String algorithmName = "SHA1";
 		Object source = "123456";
-		Object salt  = ByteSource.Util.bytes("user");
+		Object salt  = ByteSource.Util.bytes("admin");
 		int hashIterations = 1024;
 		Object result =  new  SimpleHash(algorithmName, source, salt, hashIterations);
 		System.out.println(result);
