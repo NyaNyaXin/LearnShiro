@@ -10,6 +10,12 @@
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="cacheManager" ref="cacheManager" />
 		<property name="authenticator" ref="authenticator" />
+		<property name="realms">
+			<list>
+				<ref bean="jdbcRealm"/>
+				<ref bean="secondRealm"/>
+			</list>
+		</property>
 	</bean>
 
 
@@ -23,14 +29,8 @@
 	</bean>
 	
 	<bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator" >
-		<property name="realms">
-			<list>
-				<ref bean="jdbcRealm"/>
-				<ref bean="secondRealm"/>
-			</list>
-		</property>
 		<property name="authenticationStrategy">
-			<bean class="org.apache.shiro.authc.pam.AllSuccessfulStrategy"></bean>
+			<bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
 		</property>
 	</bean>
 
